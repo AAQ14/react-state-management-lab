@@ -3,7 +3,7 @@ import "./App.css";
 import { useState } from "react";
 
 const App = () => {
-  let enoughBudget = true;
+  const [msg, setMsg] = useState('')
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
   const [zombieFighters, setZombieFighters] = useState([
@@ -103,8 +103,7 @@ const App = () => {
     // check if there is enough money to add the character to the team
     if (character.price > money) {
       console.log("Not enough money");
-      enoughBudget = false;
-     
+      setMsg('u don\'t have enough money to add a fighter to ur team')
     } else {
       //add the character to the team
       console.log("button clicked");
@@ -149,7 +148,7 @@ const App = () => {
       )}
       <h3>Total strength of the team is: {totalStrength}</h3>
       <h3>Total agility of the team is: {totalAgility}</h3>
-      {enoughBudget == false ?  <h3>u don't have enough budget to add a fighter to ur team</h3> : <h3></h3>}
+      {msg}
       <ul>
         {team.map((character) => (
           <li key={character.id}>
@@ -178,7 +177,6 @@ const App = () => {
             <button onClick={() => handleAddFighter((character = character))}>
               Add
             </button>
-            {/*  style={color: red} */}
             {/* {character.price> money? <h3>u don't have enough money to add a fighter to ur team</h3> : <p></p>} */}
           </li>
         ))}
@@ -190,4 +188,3 @@ const App = () => {
 
 export default App;
 
-// {img: character.img, name:character.name, price: character.price, strength: character.strength, agility= character.agility}
